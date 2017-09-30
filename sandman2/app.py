@@ -31,7 +31,9 @@ def get_app(
         user_models=None,
         reflect_all=True,
         read_only=False,
-        schema=None):
+        schema=None,
+        db_max_overflow=None,
+        db_pool_size=None):
     """Return an application instance connected to the database described in
     *database_uri*.
 
@@ -48,6 +50,8 @@ def get_app(
     app.config['SQLALCHEMY_DATABASE_URI'] = database_uri
     app.config['SANDMAN2_READ_ONLY'] = read_only
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+    app.config['SQLALCHEMY_POOL_SIZE'] = db_pool_size
+    app.config['SQLALCHEMY_MAX_OVERFLOW'] = db_max_overflow
     app.classes = []
     db.init_app(app)
     admin = Admin(app, base_template='layout.html', template_mode='bootstrap3')
