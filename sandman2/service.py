@@ -236,7 +236,7 @@ class Service(MethodView):
         fieldnames = collection[0].keys()
         faux_csv = ';'.join(fieldnames) + '\r\n'
         for resource in collection:
-            faux_csv += ','.join((str(x) for x in resource.values())) + '\r\n'
+            faux_csv += ';'.join((str(x) for x in resource.values())) + '\r\n'
         response = make_response(faux_csv)
         response.mimetype = 'text/csv'
         return response
