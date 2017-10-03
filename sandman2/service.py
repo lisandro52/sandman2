@@ -234,7 +234,7 @@ class Service(MethodView):
         :param list collection: A list of resources represented by dicts
         """
         fieldnames = collection[0].keys()
-        faux_csv = ','.join(fieldnames) + '\r\n'
+        faux_csv = ';'.join(fieldnames) + '\r\n'
         for resource in collection:
             faux_csv += ','.join((str(x) for x in resource.values())) + '\r\n'
         response = make_response(faux_csv)
